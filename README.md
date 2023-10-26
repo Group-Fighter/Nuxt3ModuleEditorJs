@@ -7,7 +7,7 @@ Nuxt3 components for `@editorjs/editorjs`.
 
 ## Installation
 
-- Run `yarn add nuxt-editorjs` to install from NPM.
+- Run `npm i nuxt-editorjs` to install from NPM.
 - Add the module to your `nuxt.config.ts` file and optimise with vite:
 
 ```javascript
