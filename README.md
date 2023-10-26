@@ -22,6 +22,19 @@ export default defineNuxtConfig({
   ...
 });
 ```
+- Add the setting to your `tsconfig.ts` file:
+
+```javascript
+{
+  "compilerOptions": {
+    "module": "ESNext",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "allowJs": true,
+    "noImplicitAny": false
+  },
+}
+```
 
 ## Usage
 
