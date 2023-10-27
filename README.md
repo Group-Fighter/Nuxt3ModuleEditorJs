@@ -15,8 +15,8 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 - Run `npm install` to install required dependencies.
 - Run `npm run dev:prepare` to generate type stubs.
 - Use `npm run dev` to start [playground](./playground) in development mode.
-
-- Use `npm run prepack` to build the module. [This module cannot be built into module build yet, I don't have a solution at this time, this error message Unexpected token (105:7) in \node_modules\@editorjs\editorjs\types\index.d.ts]
+> [!WARNING]
+> Use `npm run prepack` to build the module. [This module cannot be built into module build yet, I don't have a solution at this time, this error message Unexpected token (105:7) in \node_modules\@editorjs\editorjs\types\index.d.ts]
 
 ## Supported Plugins
 
