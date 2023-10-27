@@ -2,6 +2,7 @@ import fs from 'fs'
 import multer, { diskStorage } from 'multer'
 import { callNodeListener, createError, defineEventHandler, getRequestProtocol, getRequestHost, type NodeMiddleware } from 'h3'
 import { type ApiAttachesToolOptions } from '../../../types'
+import { GenerateRandomString } from '../../utils'
 // @ts-ignore
 import { useRuntimeConfig } from '#imports'
 
@@ -16,7 +17,7 @@ const storage = diskStorage({
   // Tentukan nama file (pertahankan nama file asli)
   filename: function (req, file, cb) {
     // Generate a unique filename, e.g., using a UUID or timestamp
-    const uniqueFileName = `${Date.now()}_${file.originalname}`
+    const uniqueFileName = `${Date.now()}_${GenerateRandomString(20)}`
     cb(null, uniqueFileName)
   }
 })
@@ -30,13 +31,13 @@ const upload = multer({
   fileFilter (req, file, cb) {
     // Create a regular expression pattern from allowedMimes
     const mimePattern = config.mime.map((mime) => {
-      const mimeParts = mime.split('/') // Split the MIME type into parts
-      const mimeType = mimeParts[1].replace(/\./g, '\\.') // Escape dots in the file extension
+      const mimeParts = mime.split('/')
+      const mimeType = mimeParts[1].replace(/\./g, '\\.')
       return mimeType
     }).join('|')
 
     // Now you can use mimePattern in your validation
-    const mimeRegex = new RegExp(`\\.(${mimePattern})$`, 'i') // Case-insensitive regex
+    const mimeRegex = new RegExp(`\\.(${mimePattern})$`, 'i')
 
     // validation with extention
     if (!file.originalname.match(mimeRegex)) {

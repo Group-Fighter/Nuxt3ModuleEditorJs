@@ -8,6 +8,7 @@ import {
   watch,
   type PropType
 } from 'vue'
+// @ts-ignore
 import EditorJS, { type API, type BlockMutationEvent, type EditorConfig, type OutputData, type ToolConstructable, type ToolSettings, type OutputBlockData } from '@editorjs/editorjs'
 import { type EditorJsToolsConfig, type ModuleOptions } from '../../types'
 import { initUndoModule, DefaultTool } from '../utils'

@@ -1,3 +1,4 @@
+// @ts-ignore
 import { type I18nConfig, type LogLevels } from '@editorjs/editorjs'
 
 export interface GlobalEditorJs {

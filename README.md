@@ -1,23 +1,69 @@
 # nuxt-editorjs
-
-[![Npm package version](https://badgen.net/npm/v/nuxt-editorjs)](https://npmjs.com/package/nuxt-editorjs)
-[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
-
 Nuxt3 components for `@editorjs/editorjs`.
 
 ## Installation
 
-- Run `npm i nuxt-editorjs` to install from NPM.
+- Run `git clone https://github.com/Group-Fighter/Nuxt3ModuleEditorJs.git` at module directory.
+
+## Development
+
+- Run `npm` to install required dependencies.
+- Run `npm run dev:prepare` to generate type stubs.
+- Use `npm run dev` to start [playground](./playground) in development mode.
+
+- Use `npm run prepack` to build the module. [This module cannot be built into module build yet, I don't have a solution at this time, this error message Unexpected token (105:7) in \node_modules\@editorjs\editorjs\types\index.d.ts]
+
+## Usage
+
+- We expose a single `<NuxtEditorJs />` component.
+## Configuration
 - Add the module to your `nuxt.config.ts` file and optimise with vite:
 
 ```javascript
+const defaultApi = {
+  ImageTool: {
+    basePath: '/api/upload-file',
+    imageDir: './playground/public/imagetool',
+    mime: ['image/png', 'image/jpeg', 'image/gif'],
+    maxFileSize: 1000000
+  },
+  LinkTool: {
+    basePath: '/api/meta-web'
+  },
+  AttachesTool: {
+    basePath: '/api/attachment-file',
+    imageDir: './playground/public/attachmenttool',
+    mime: ['image/png', 'image/jpeg', 'image/gif'],
+    maxFileSize: 1000000
+  },
+  PersonalityTool: {
+    basePath: '/api/upload-personality-image',
+    imageDir: './playground/public/personalitytool',
+    mime: ['image/png', 'image/jpeg', 'image/gif'],
+    maxFileSize: 1000000
+  }
+}
+
 export default defineNuxtConfig({
   ...
-  modules: ["nuxt-editorjs"],
+  modules: ["~/module/[directory name for this module]/module"],
+  Nuxt3EditorJS: {
+    EditorJsConfig: {},
+    EditorJsToolsConfig: {},
+    Api: {}
+  },
   vite: {
     optimizeDeps: {
       include: ["@editorjs/editorjs"],
     },
+    // optional
+    build: {
+      rollupOptions: {
+        output: {
+          format: 'es'
+        }
+      }
+    }
   },
   ...
 });
@@ -31,26 +77,8 @@ export default defineNuxtConfig({
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "skipLibCheck": true
   },
 }
 ```
-
-## Usage
-
-- We expose a single `<editor-js />` component.
-
-## Development
-
-- Run `yarn` to install required dependencies.
-- Run `yarn dev:prepare` to generate type stubs.
-- Use `yarn dev` to start [playground](./playground) in development mode.
-- Use `yarn prepack` to build the module.
-
-## Todo
-
-- Add more Editor.js modules (Header, List, ...)
-- Add the ability to use custom Editor.js modules
-- Add preview component (using EditorJS -> HTML package)
-- Add custom styling (override standard CSS)
-- Why is `<client-only>` needed?`</client>` to render a v-model?

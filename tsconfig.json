@@ -5,7 +5,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "allowJs": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "skipLibCheck": true
   },
   "include": [
     "src/global.d.ts"

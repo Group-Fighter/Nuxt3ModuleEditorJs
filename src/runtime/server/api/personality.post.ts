@@ -2,6 +2,7 @@ import fs from 'fs'
 import multer, { diskStorage } from 'multer'
 import { callNodeListener, createError, defineEventHandler, getRequestProtocol, getRequestHost, type NodeMiddleware } from 'h3'
 import { type ApiPersonalityToolOptions } from '../../../types'
+import { GenerateRandomString } from '../../utils'
 // @ts-ignore
 import { useRuntimeConfig } from '#imports'
 
@@ -16,7 +17,7 @@ const storage = diskStorage({
   // Tentukan nama file (pertahankan nama file asli)
   filename: function (req, file, cb) {
     // Generate a unique filename, e.g., using a UUID or timestamp
-    const uniqueFileName = `${Date.now()}_${file.originalname}`
+    const uniqueFileName = `${Date.now()}_${GenerateRandomString(20)}`
     cb(null, uniqueFileName)
   }
 })

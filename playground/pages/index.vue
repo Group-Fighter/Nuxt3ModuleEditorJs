@@ -1,111 +1,132 @@
 <template>
-  <div>
-    <client-only><editor-js v-model="dat" /></client-only>
-    <pre>
-      {{ dat }}
-    </pre>
-  </div>
+  <ClientOnly>
+    <NuxtEditorJs
+      v-model:modelValue="dat"
+      :config="config"
+      :holder="holder"
+      :on-ready="onReady"
+      :on-change="onChange"
+      :initialized="onInitialized"
+    />
+  </ClientOnly>
 </template>
 
 <script setup>
-const default_data = {
-  time: 1660335428612,
+const holder = 'nuxt-editor-js'
+const config = {}
+const onReady = (args) => {
+  // eslint-disable-next-line no-console
+  console.log('on ready')
+}
+const onChange = (args) => {
+  // eslint-disable-next-line no-console
+  console.log('Now I know that Editor\'s content changed!')
+}
+const data = {
+  time: 1591362820044,
   blocks: [
     {
-      id: 'MnGi61oxdF',
       type: 'header',
       data: {
-        text: 'Welcome to nuxt-editorjs!',
-        level: 1
-      }
-    },
-    {
-      id: 'b_Ju7U6wPl',
-      type: 'paragraph',
-      data: {
-        text: 'This is a nuxt3 plugin for editorjs.'
-      }
-    },
-    {
-      id: 'R3o5BpI-r9',
-      type: 'paragraph',
-      data: {
-        text: '<b>A paragraph of text:</b>&nbsp;Lorem ipsum dolor sit amet consectetur adipisicing elit. Labore perspiciatis molestias neque autem cumque provident? Laudantium ad, quisquam quos nulla amet, perferendis recusandae voluptates eligendi cupiditate consectetur veniam! Ipsum, ullam?'
-      }
-    },
-    {
-      id: 'b9mkw6ZO92',
-      type: 'header',
-      data: {
-        text: 'Heading 1',
-        level: 1
-      }
-    },
-    {
-      id: 'P2PZsHo2lq',
-      type: 'header',
-      data: {
-        text: 'Heading 2',
+        text: 'Editor.js',
         level: 2
       }
     },
     {
-      id: 'hHJZjkW-TO',
+      type: 'paragraph',
+      data: {
+        text: 'Hey. Meet the new Editor. On this page you can see it in action — try to edit this text.'
+      }
+    },
+    {
       type: 'header',
       data: {
-        text: 'Heading 3',
+        text: 'Key features',
         level: 3
       }
     },
     {
-      id: 'k8EDwa0oVG',
       type: 'header',
       data: {
-        text: 'Heading 4',
-        level: 4
+        text: 'What does it mean «block-styled editor»',
+        level: 3
       }
     },
     {
-      id: '62ciFnEFjZ',
+      type: 'paragraph',
+      data: {
+        text: "Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Editor.js <mark class=\"cdx-marker\">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor's Core."
+      }
+    },
+    {
+      type: 'paragraph',
+      data: {
+        text: 'There are dozens of <a href="https://github.com/editor-js">ready-to-use Blocks</a> and the <a href="https://editorjs.io/creating-a-block-tool">simple API</a> for creation any Block you need. For example, you can implement Blocks for Tweets, Instagram posts, surveys and polls, CTA-buttons and even games.'
+      }
+    },
+    {
       type: 'header',
       data: {
-        text: 'Heading 5',
-        level: 5
+        text: 'What does it mean clean data output',
+        level: 3
       }
     },
     {
-      id: 'YCBcKhNqib',
-      type: 'header',
+      type: 'paragraph',
       data: {
-        text: 'Heading 6',
-        level: 6
+        text: 'Classic WYSIWYG-editors produce raw HTML-markup with both content data and content appearance. On the contrary, Editor.js outputs JSON object with data of each Block. You can see an example below'
       }
     },
     {
-      id: 's_J3d5U8DA',
-      type: 'list',
+      type: 'paragraph',
       data: {
-        style: 'ordered',
-        items: [
-          'An ordered list item',
-          'Another ordered list item',
-          'One more'
-        ]
+        text: 'Given data can be used as you want: render with HTML for <code class="inline-code">Web clients</code>, render natively for <code class="inline-code">mobile apps</code>, create markup for <code class="inline-code">Facebook Instant Articles</code> or <code class="inline-code">Google AMP</code>, generate an <code class="inline-code">audio version</code> and so on.'
       }
     },
     {
-      id: 'kMyQbO156y',
-      type: 'list',
+      type: 'paragraph',
       data: {
-        style: 'unordered',
-        items: ['An unordered list item!', 'In italics?', 'Or bold?']
+        text: 'Clean data is useful to sanitize, validate and process on the backend.'
+      }
+    },
+    {
+      type: 'delimiter',
+      data: {}
+    },
+    {
+      type: 'paragraph',
+      data: {
+        text: "We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make it's core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. 😏"
+      }
+    },
+    {
+      type: 'image',
+      data: {
+        file: {
+          url: 'https://codex.so/public/app/img/external/codex2x.png'
+        },
+        caption: '',
+        withBorder: false,
+        stretched: false,
+        withBackground: false
       }
     }
+
   ],
-  version: '2.25.0'
+  version: '2.18.0'
 }
-const dat = ref(default_data)
-const save = () => {
-  console.log(foo)
+const dat = ref(data)
+const onInitialized = (NuxtEditorJs) => {
+  // eslint-disable-next-line no-console
+  console.log(NuxtEditorJs)
 }
+
+watch(dat, (value) => {
+  // eslint-disable-next-line no-console
+  console.log(value)
+}, { deep: true, immediate: true })
 </script>
+
+<style scoped>
+
+</style>

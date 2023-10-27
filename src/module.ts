@@ -1,5 +1,5 @@
-import { defu } from 'defu'
 import { defineNuxtModule, createResolver, addComponentsDir, addPlugin, addServerHandler, useLogger } from '@nuxt/kit'
+import { defu } from 'defu'
 import { type ModuleOptions, type ApiModuleOptions, type ModuleOptionsConfig, type EditorJsToolsConfig } from './types'
 
 enum LogLevels {
@@ -14,7 +14,19 @@ const defaultApi: ApiModuleOptions = {
     methods: 'POST',
     basePath: '/api/upload-file',
     imageDir: 'public/image',
-    mime: ['image/png', 'image/jpeg', 'image/gif'],
+    mime: [
+      'image/jpg',
+      'image/jpeg',
+      'image/png',
+      'image/gif',
+      'image/bmp',
+      'image/tiff',
+      'image/webp',
+      'image/svg+xml',
+      'image/x-icon',
+      'image/vnd.microsoft.icon',
+      'image/vnd.adobe.photoshop'
+    ] as string[],
     maxFileSize: 1000000
   },
   LinkTool: {
@@ -23,13 +35,37 @@ const defaultApi: ApiModuleOptions = {
   AttachesTool: {
     basePath: '/api/attachment-file',
     imageDir: 'public/file',
-    mime: ['image/png', 'image/jpeg', 'image/gif'],
+    mime: [
+      'application/pdf',
+      'application/msword',
+      'application/vnd.ms-excel',
+      'application/vnd.ms-powerpoint',
+      'application/xml',
+      'application/json',
+      'application/rtf',
+      'application/zip',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+    ] as string[],
     maxFileSize: 1000000
   },
   PersonalityTool: {
     basePath: '/api/upload-personality-image',
     imageDir: 'public/image',
-    mime: ['image/png', 'image/jpeg', 'image/gif'],
+    mime: [
+      'image/jpg',
+      'image/jpeg',
+      'image/png',
+      'image/gif',
+      'image/bmp',
+      'image/tiff',
+      'image/webp',
+      'image/svg+xml',
+      'image/x-icon',
+      'image/vnd.microsoft.icon',
+      'image/vnd.adobe.photoshop'
+    ] as string[],
     maxFileSize: 1000000
   }
 } as const
@@ -161,7 +197,7 @@ const defaultTools: EditorJsToolsConfig = {
             '#8BC34A',
             '#CDDC39',
             '#FFF'
-          ],
+          ] as string[],
           defaultColor: '#FF1300',
           type: 'text',
           customPicker: true
@@ -188,8 +224,8 @@ const defaultTools: EditorJsToolsConfig = {
           shortcut: 'CMD+L',
           target: '_blank',
           rel: 'nofollow',
-          availableTargets: ['_blank', '_self'],
-          availableRels: ['author', 'noreferrer'],
+          availableTargets: ['_blank', '_self'] as string[],
+          availableRels: ['author', 'noreferrer'] as string[],
           validate: false
         }
       }
@@ -252,7 +288,7 @@ const defaults: ModuleOptionsConfig = {
     logLevel: 'ERROR' as LogLevels,
     i18n: undefined,
     inlineToolbar: false,
-    tunes: []
+    tunes: [] as string[]
   },
   EditorJsToolsConfig: defaultTools,
   Api: defaultApi
