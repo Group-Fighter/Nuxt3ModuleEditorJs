@@ -4,6 +4,7 @@
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 
 Nuxt 3 EditorJs for `@editorjs/editorjs`.
+
 Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://github.com/ChangJoo-Park/vue-editor-js`
 
 ## Installation
@@ -17,16 +18,42 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 
 - Use `npm run prepack` to build the module. [This module cannot be built into module build yet, I don't have a solution at this time, this error message Unexpected token (105:7) in \node_modules\@editorjs\editorjs\types\index.d.ts]
 
+## Supported Plugins
+
+- [Personality](https://github.com/editor-js/personality)
+- [Header](https://github.com/editor-js/header)
+- [Nested List](https://github.com/editor-js/nested-list)
+- [Image](https://github.com/editor-js/image)
+- [InlineCode](https://github.com/editor-js/inline-code)
+- [Embed](https://github.com/editor-js/embed)
+- [Quote](https://github.com/editor-js/quote)
+- [Marker](https://github.com/editor-js/marker)
+- [Code](https://github.com/editor-js/code)
+- [Link](https://github.com/editor-js/link)
+- [Delimiter](https://github.com/editor-js/delimiter)
+- [Raw](https://github.com/editor-js/raw)
+- [Table](https://github.com/editor-js/table)
+- [Warning](https://github.com/editor-js/warning)
+- [Paragraph](https://github.com/editor-js/paragraph)
+- [Checklist](https://github.com/editor-js/checklist)
+- [Embed](https://github.com/editor-js/embed)
+- [Attaches](https://github.com/editor-js/attaches)
+- [Text Variant Tune](https://github.com/editor-js/text-variant-tune)
+- [Change Case](https://github.com/maziyank/editorjs-change-case)
+- [Hyperlink](https://github.com/trinhtam/editorjs-hyperlink)
+- [Undo](https://github.com/kommitters/editorjs-undo)
+- [Text Color](https://github.com/flaming-cl/editorjs-text-color-plugin)
+
 ## Usage
 - We expose a : 
   - Single `<NuxtEditorJs />` component.
-  - Three backend for upload file
+  - Three backend for upload file and one backend for scrape meta data (Link Tool)
 
 ```vue
 <template>
   <ClientOnly>
     <NuxtEditorJs
-      v-model:modelValue="dat"
+      v-model:modelValue="tempData"
       :config="config"
       :holder="holder"
       :on-ready="onReady"
@@ -37,27 +64,42 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 </template>
 
 <script setup>
+// this example to import external plugin
+import List from '@editorjs/list'
+
 const holder = 'nuxt-editor-js'
-const config = {}
+//  you can use another config editorjs
+const config = {
+  tools: {
+    list: {
+      class: List,
+      inlineToolbar: true,
+      config: {
+        defaultStyle: 'unordered'
+      }
+    },
+    ...
+  },
+  ...
+}
+// config for onReady at this not that config
 const onReady = (args) => {
-  // eslint-disable-next-line no-console
   console.log('on ready')
 }
+// config for onChange at this not that config
 const onChange = (args) => {
-  // eslint-disable-next-line no-console
   console.log('Now I know that Editor\'s content changed!')
 }
 const data = {}
-const dat = ref(data)
+const tempData = ref(data)
 const onInitialized = (NuxtEditorJs) => {
-  // eslint-disable-next-line no-console
   console.log(NuxtEditorJs)
 }
 
 watch(dat, (value) => {
-  // eslint-disable-next-line no-console
   console.log(value)
 }, { deep: true, immediate: true })
+
 </script>
 ```
 ## Configuration
