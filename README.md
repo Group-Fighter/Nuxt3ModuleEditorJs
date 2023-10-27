@@ -1,21 +1,65 @@
-# nuxt-editorjs
-Nuxt3 components for `@editorjs/editorjs`.
+# nuxt3-editorjs
+
+[![Npm package version](https://badgen.net/npm/v/nuxt-editorjs)](https://npmjs.com/package/nuxt-editorjs)
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
+
+Nuxt 3 EditorJs for `@editorjs/editorjs`.
+Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://github.com/ChangJoo-Park/vue-editor-js`
 
 ## Installation
-
 - Run `git clone https://github.com/Group-Fighter/Nuxt3ModuleEditorJs.git` at module directory.
 
 ## Development
 
-- Run `npm` to install required dependencies.
+- Run `npm install` to install required dependencies.
 - Run `npm run dev:prepare` to generate type stubs.
 - Use `npm run dev` to start [playground](./playground) in development mode.
 
 - Use `npm run prepack` to build the module. [This module cannot be built into module build yet, I don't have a solution at this time, this error message Unexpected token (105:7) in \node_modules\@editorjs\editorjs\types\index.d.ts]
 
 ## Usage
+- We expose a : 
+  - Single `<NuxtEditorJs />` component.
+  - Three backend for upload file
 
-- We expose a single `<NuxtEditorJs />` component.
+```vue
+<template>
+  <ClientOnly>
+    <NuxtEditorJs
+      v-model:modelValue="dat"
+      :config="config"
+      :holder="holder"
+      :on-ready="onReady"
+      :on-change="onChange"
+      :initialized="onInitialized"
+    />
+  </ClientOnly>
+</template>
+
+<script setup>
+const holder = 'nuxt-editor-js'
+const config = {}
+const onReady = (args) => {
+  // eslint-disable-next-line no-console
+  console.log('on ready')
+}
+const onChange = (args) => {
+  // eslint-disable-next-line no-console
+  console.log('Now I know that Editor\'s content changed!')
+}
+const data = {}
+const dat = ref(data)
+const onInitialized = (NuxtEditorJs) => {
+  // eslint-disable-next-line no-console
+  console.log(NuxtEditorJs)
+}
+
+watch(dat, (value) => {
+  // eslint-disable-next-line no-console
+  console.log(value)
+}, { deep: true, immediate: true })
+</script>
+```
 ## Configuration
 - Add the module to your `nuxt.config.ts` file and optimise with vite:
 

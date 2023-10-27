@@ -344,3 +344,17 @@ export const GenerateRandomString = (length:number) => {
 
   return result
 }
+
+export const cleanURL = (url: string): string => {
+  // Remove "./playground"
+  url = url.replace('/./playground', '')
+  url = url.replace(/\/\.\//, '/')
+
+  // Remove "public" or "assets"
+  url = url.replace(/\/(public|assets)\//, '/')
+
+  // Remove any leading and trailing slashes
+  url = url.replace(/^\/+|\/+$/g, '')
+
+  return url
+}

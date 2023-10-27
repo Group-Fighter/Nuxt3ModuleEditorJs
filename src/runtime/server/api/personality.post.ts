@@ -2,7 +2,7 @@ import fs from 'fs'
 import multer, { diskStorage } from 'multer'
 import { callNodeListener, createError, defineEventHandler, getRequestProtocol, getRequestHost, type NodeMiddleware } from 'h3'
 import { type ApiPersonalityToolOptions } from '../../../types'
-import { GenerateRandomString } from '../../utils'
+import { GenerateRandomString, cleanURL } from '../../utils'
 // @ts-ignore
 import { useRuntimeConfig } from '#imports'
 
@@ -71,20 +71,3 @@ export default defineEventHandler(async (event) => {
     }
   }
 })
-
-function cleanURL (url: string): string {
-  // Remove "./playground"
-  url = url.replace('/./playground', '')
-  url = url.replace(/\/\.\//, '/')
-
-  // Remove "public" or "assets"
-  url = url.replace(/\/(public|assets)\//, '/')
-
-  // Remove any leading and trailing slashes
-  url = url.replace(/^\/+|\/+$/g, '')
-
-  return url
-}
-
-// https://reffect.co.jp/en/nuxt/nuxt3-file-upload/
-// https://github.com/czbone/nuxt3-image-upload-demo/tree/main
