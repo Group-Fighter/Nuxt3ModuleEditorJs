@@ -18,9 +18,9 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 > [!WARNING]
 > NodeJs v18.17.1
 > Nuxt v3.8.0
-> @nuxt/module-builder latest
-> Use `npm run prepack` to build the module. 
-> [This module cannot be built into module build yet, I don't have a solution at this time, this error message Unexpected token (105:7) in \node_modules\@editorjs\editorjs\types\index.d.ts]
+> - @nuxt/module-builder latest
+> - Use `npm run prepack` to build the module. 
+> - [This module cannot be built into module build yet, I don't have a solution at this time, this error message Unexpected token (105:7) in \node_modules\@editorjs\editorjs\types\index.d.ts]
 
 ## Supported Plugins
 
