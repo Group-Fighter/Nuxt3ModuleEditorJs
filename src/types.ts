@@ -1,17 +1,4 @@
-import {type I18nConfig, type LogLevels} from '@editorjs/editorjs'
-
-export interface ModuleOptions {
-  EditorJsConfig?: Partial<GlobalEditorJs>,
-  EditorJsToolsConfig?: Partial<EditorJsToolsConfig>
-  Api?: Partial<ApiModuleOptions>
-}
-
-export interface ApiModuleOptions {
-  ImageTool: Partial<ApiImageToolOptions>,
-  LinkTool: Partial<ApiLinkToolOptions>,
-  AttachesTool: Partial<ApiAttachesToolOptions>,
-  PersonalityTool: Partial<ApiPersonalityToolOptions>,
-}
+import { type I18nConfig, type LogLevels } from '@editorjs/editorjs'
 
 export interface GlobalEditorJs {
    autofocus?: boolean;
@@ -36,97 +23,15 @@ export interface ApiLinkToolOptions {
 }
 export interface ApiAttachesToolOptions {
     basePath: string,
+    imageDir: string,
+    mime: string[],
+    maxFileSize: number,
 }
 export interface ApiPersonalityToolOptions {
     basePath: string,
-}
-
-
-export interface EditorJsToolsConfig {
-  HeaderConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<HeaderConfig>;
-  };
-  NestedListConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<NestedListConfig>;
-  };
-  ImageConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<ImageConfig>;
-  };
-  ChecklistConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<ChecklistConfig>;
-  };
-  LinkToolConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<LinkToolConfig>;
-  };
-  RawConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<RawConfig>;
-  };
-  EmbedConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<EmbedConfig>;
-  };
-  QuoteConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<QuoteConfig>;
-  };
-  ParagraphConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<ParagraphConfig>;
-  };
-  TableConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<TableConfig>;
-  };
-  AttachesConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<AttachesConfig>;
-  };
-  DelimiterConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<DelimiterConfig>;
-  };
-  MarkerConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<MarkerConfig>;
-  };
-  ColorConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<ColorConfig>;
-  };
-  ChangeCaseConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<ChangeCaseConfig>;
-  };
-  HyperlinkConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<HyperlinkConfig>;
-  };
-  TextVariantConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<TextVariantConfig>;
-  };
-  CodeConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<CodeConfig>;
-  };
-  PersonalityConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<PersonalityConfig>;
-  };
-  WarningConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<WarningConfig>;
-  };
-  InlineCodeConfig?: {
-    isEnabled: boolean;
-    toolsConfig: Partial<InlineCodeConfig>;
-  };
+    imageDir: string,
+    mime: string[],
+    maxFileSize: number,
 }
 
 export interface OnReadyFunc {
@@ -155,8 +60,8 @@ export interface ImageConfig {
         uploadByUrl(url: string): Promise<{ success: number; file: { url: string } }>;
       };
       endpoints?: {
-        byFile: string; // Your backend file uploader endpoint
-        byUrl: string; // Your endpoint that provides uploading by Url
+        byFile?: string; // Your backend file uploader endpoint
+        byUrl?: string; // Your endpoint that provides uploading by Url
       };
     };
   };
@@ -173,7 +78,7 @@ export interface LinkToolConfig {
   linkTool: {
     class?: any;
     config: {
-      endpoint: string;
+      endpoint?: string;
     };
   };
 }
@@ -287,7 +192,7 @@ export interface PersonalityConfig {
   personality: {
     class?: any;
     config: {
-      endpoint: string;
+      endpoint?: string;
     };
   };
 }
@@ -309,4 +214,119 @@ export interface InlineCodeConfig {
     class?: any;
     shortcut: string;
   };
+}
+
+export interface UndoConfig {
+  undo: string;
+  redo: string;
+}
+
+export interface ApiModuleOptions {
+  ImageTool: Partial<ApiImageToolOptions>,
+  LinkTool: Partial<ApiLinkToolOptions>,
+  AttachesTool: Partial<ApiAttachesToolOptions>,
+  PersonalityTool: Partial<ApiPersonalityToolOptions>,
+}
+
+export interface EditorJsToolsConfig {
+  HeaderConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<HeaderConfig>;
+  };
+  NestedListConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<NestedListConfig>;
+  };
+  ImageConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<ImageConfig>;
+  };
+  ChecklistConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<ChecklistConfig>;
+  };
+  LinkToolConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<LinkToolConfig>;
+  };
+  RawConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<RawConfig>;
+  };
+  EmbedConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<EmbedConfig>;
+  };
+  QuoteConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<QuoteConfig>;
+  };
+  ParagraphConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<ParagraphConfig>;
+  };
+  TableConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<TableConfig>;
+  };
+  AttachesConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<AttachesConfig>;
+  };
+  DelimiterConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<DelimiterConfig>;
+  };
+  MarkerConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<MarkerConfig>;
+  };
+  ColorConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<ColorConfig>;
+  };
+  ChangeCaseConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<ChangeCaseConfig>;
+  };
+  HyperlinkConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<HyperlinkConfig>;
+  };
+  TextVariantConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<TextVariantConfig>;
+  };
+  CodeConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<CodeConfig>;
+  };
+  PersonalityConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<PersonalityConfig>;
+  };
+  WarningConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<WarningConfig>;
+  };
+  InlineCodeConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<InlineCodeConfig>;
+  };
+  UndoConfig?: {
+    isEnabled: boolean;
+    toolsConfig: Partial<UndoConfig>;
+  };
+}
+
+export interface ModuleOptions {
+  EditorJsConfig: Partial<GlobalEditorJs>,
+  EditorJsToolsConfig: Partial<EditorJsToolsConfig>
+  Api: Partial<ApiModuleOptions>
+}
+
+export interface ModuleOptionsConfig {
+  EditorJsConfig: GlobalEditorJs,
+  EditorJsToolsConfig: EditorJsToolsConfig
+  Api: ApiModuleOptions
 }

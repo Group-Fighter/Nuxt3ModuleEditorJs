@@ -1,12 +1,19 @@
 import { defu } from 'defu'
 import { defineNuxtModule, createResolver, addComponentsDir, addPlugin, addServerHandler, useLogger } from '@nuxt/kit'
-import { type ModuleOptions, type ApiModuleOptions } from './type.d'
+import { type ModuleOptions, type ApiModuleOptions, type ModuleOptionsConfig, type EditorJsToolsConfig } from './types'
 
-const defaultApi = {
+enum LogLevels {
+  VERBOSE = 'VERBOSE',
+  INFO = 'INFO',
+  WARN = 'WARN',
+  ERROR = 'ERROR',
+}
+
+const defaultApi: ApiModuleOptions = {
   ImageTool: {
     methods: 'POST',
     basePath: '/api/upload-file',
-    imageDir: 'public/file',
+    imageDir: 'public/image',
     mime: ['image/png', 'image/jpeg', 'image/gif'],
     maxFileSize: 1000000
   },
@@ -14,14 +21,20 @@ const defaultApi = {
     basePath: '/api/meta-web'
   },
   AttachesTool: {
-    basePath: '/api/upload-file'
+    basePath: '/api/attachment-file',
+    imageDir: 'public/file',
+    mime: ['image/png', 'image/jpeg', 'image/gif'],
+    maxFileSize: 1000000
   },
   PersonalityTool: {
-    basePath: '/api/upload-file'
+    basePath: '/api/upload-personality-image',
+    imageDir: 'public/image',
+    mime: ['image/png', 'image/jpeg', 'image/gif'],
+    maxFileSize: 1000000
   }
-}
+} as const
 
-const defaultTools = {
+const defaultTools: EditorJsToolsConfig = {
   HeaderConfig: {
     isEnabled: true,
     toolsConfig: {}
@@ -40,14 +53,14 @@ const defaultTools = {
   ImageConfig: {
     isEnabled: true,
     toolsConfig: {
-      image: {
-        config: {
-          endpoints: {
-            byFile: defaultApi.ImageTool.basePath,
-            byUrl: defaultApi.ImageTool.basePath
-          }
-        }
-      }
+      // image: {
+      //   config: {
+      //     endpoints: {
+      //       byFile: defaultApi.ImageTool.basePath,
+      //       byUrl: defaultApi.ImageTool.basePath
+      //     }
+      //   }
+      // }
     }
   },
   ChecklistConfig: {
@@ -195,7 +208,7 @@ const defaultTools = {
     toolsConfig: {
       personality: {
         config: {
-          endpoint: 'http://localhost:8008/uploadFile'
+          endpoint: defaultApi.PersonalityTool.basePath
         }
       }
     }
@@ -220,19 +233,26 @@ const defaultTools = {
         shortcut: 'CMD+SHIFT+M'
       }
     }
+  },
+  UndoConfig: {
+    isEnabled: true,
+    toolsConfig: {
+      undo: 'CMD+X',
+      redo: 'CMD+ALT+C'
+    }
   }
-}
+} as const
 
-const defaults: ModuleOptions = {
+const defaults: ModuleOptionsConfig = {
   EditorJsConfig: {
     autofocus: true,
-    defaultBlock: 'paragraph',
+    defaultBlock: '',
     placeholder: 'Let`s write an awesome story!',
-    minHeight: 300,
-    logLevel: undefined,
+    minHeight: 0,
+    logLevel: 'ERROR' as LogLevels,
     i18n: undefined,
-    inlineToolbar: ['link', 'marker', 'bold', 'italic'],
-    tunes: ['textVariant']
+    inlineToolbar: false,
+    tunes: []
   },
   EditorJsToolsConfig: defaultTools,
   Api: defaultApi
@@ -241,39 +261,52 @@ const defaults: ModuleOptions = {
 const PACKAGE_NAME = 'Nuxt3EditorJS'
 export default defineNuxtModule<ModuleOptions>({
   meta: {
-    name: `${PACKAGE_NAME}`,
-    configKey: `${PACKAGE_NAME}`
+    name: `@fighter/${PACKAGE_NAME}`,
+    configKey: `${PACKAGE_NAME}`,
+    compatibility: {
+      bridge: false
+    }
   },
   defaults,
   setup (moduleOptions, nuxt) {
     const logger = useLogger(PACKAGE_NAME)
 
-    logger.info('Setting up editorjs...')
-    // 2. Set public and private runtime configuration
-    const options = defu(moduleOptions, defaults)
+    logger.info('Setting up Nuxt3EditorJS...')
 
+    const options = defu(moduleOptions, defaults)
     // @ts-ignore TODO: Fix this `nuxi prepare` bug (see https://github.com/nuxt/framework/issues/8728)
-    nuxt.options.runtimeConfig.public.Nuxt3EditorJS =
-      options as ModuleOptions
+    nuxt.options.runtimeConfig.public.Nuxt3EditorJS = defu(nuxt.options.runtimeConfig.public.Nuxt3EditorJS, options) as ModuleOptionsConfig
 
     const resolver = createResolver(import.meta.url)
     addPlugin({
       src: resolver.resolve('./runtime/plugin.client'),
       mode: 'client'
     })
+
     const componentsDir = resolver.resolve('./runtime/components')
     addComponentsDir({
       path: componentsDir
     })
+
     const cssDir = resolver.resolve('./runtime/assets/css/editor.css')
     nuxt.options.css.push(cssDir)
 
-    const handlerUploadFile = resolver.resolve('./runtime/server/api/upload.post')
+    const handlerUploadImage = resolver.resolve('./runtime/server/api/image.post')
     // @ts-ignore
-    addServerHandler({ handler: handlerUploadFile, route: options.Api.ImageTool.basePath })
+    addServerHandler({ handler: handlerUploadImage, route: options.Api.ImageTool.basePath })
 
-    const handlerScrapeMeta = resolver.resolve('./runtime/server/api/scrapemeta.post')
+    const handlerUploadFile = resolver.resolve('./runtime/server/api/attachment.post')
+    // @ts-ignore
+    addServerHandler({ handler: handlerUploadFile, route: options.Api.AttachesTool.basePath })
+
+    const handlerUploadImagePersonality = resolver.resolve('./runtime/server/api/personality.post')
+    // @ts-ignore
+    addServerHandler({ handler: handlerUploadImagePersonality, route: options.Api.PersonalityTool.basePath })
+
+    const handlerScrapeMeta = resolver.resolve('./runtime/server/api/scrapemeta.get')
     // @ts-ignore
     addServerHandler({ handler: handlerScrapeMeta, route: options.Api.LinkTool.basePath })
+
+    logger.info('Nuxt3EditorJS up setup complete')
   }
 })
