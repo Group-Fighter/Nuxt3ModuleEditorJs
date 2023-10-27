@@ -70,7 +70,7 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 <script setup>
 // this example to import external plugin
 import List from '@editorjs/list'
-
+// this for register id component
 const holder = 'nuxt-editor-js'
 //  you can use another config editorjs
 const config = {
@@ -96,6 +96,7 @@ const onChange = (args) => {
 }
 const data = {}
 const tempData = ref(data)
+// this for trigger the plugin
 const onInitialized = (NuxtEditorJs) => {
   console.log(NuxtEditorJs)
 }
