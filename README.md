@@ -8,19 +8,14 @@ Nuxt 3 EditorJs for `@editorjs/editorjs`.
 Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://github.com/ChangJoo-Park/vue-editor-js`
 
 ## Installation
-- Run `git clone https://github.com/Group-Fighter/Nuxt3ModuleEditorJs.git` at module directory.
+- Run `npm i nuxt3-editorjs` to install from NPM.
 
 ## Development
 
 - Run `npm install` to install required dependencies.
 - Run `npm run dev:prepare` to generate type stubs.
 - Use `npm run dev` to start [playground](./playground) in development mode.
-> [!WARNING]
-> - Use `npm run prepack` to build the module. 
-> - [This module cannot be built into module build yet, I don't have a solution at this time, this error message Unexpected token (105:7) in \node_modules\@editorjs\editorjs\types\index.d.ts]
-> - NodeJs v18.17.1
-> - Nuxt v3.8.0
-> - @nuxt/module-builder latest
+- Use `npm run prepack` to build the module. 
 
 ## Supported Plugins
 
