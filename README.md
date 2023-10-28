@@ -24,7 +24,7 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 
 ## Supported Plugins
 
-<table border="0" align="center">
+<table border="0" align="center" width="100%" >
 <tr border="0">
 <td width="50%" align="center">
   <ol>
