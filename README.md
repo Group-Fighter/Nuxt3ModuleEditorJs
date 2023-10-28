@@ -27,33 +27,35 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 <table border="0" align="center">
 <tr border="0">
 <td width="50%" align="center">
-  - [Personality](https://github.com/editor-js/personality)
-- [Header](https://github.com/editor-js/header)
-- [Nested List](https://github.com/editor-js/nested-list)
-- [Image](https://github.com/editor-js/image)
-- [InlineCode](https://github.com/editor-js/inline-code)
-- [Embed](https://github.com/editor-js/embed)
-- [Quote](https://github.com/editor-js/quote)
-- [Marker](https://github.com/editor-js/marker)
-- [Code](https://github.com/editor-js/code)
-- [Link](https://github.com/editor-js/link)
-- [Delimiter](https://github.com/editor-js/delimiter)
-- [Raw](https://github.com/editor-js/raw)
-  
+  <ol>
+    <li><a href="https://github.com/editor-js/personality">Personality</a></li>
+    <li><a href="https://github.com/editor-js/header">Header</a></li>
+    <li><a href="https://github.com/editor-js/nested-list">Nested List</a></li>
+    <li><a href="https://github.com/editor-js/image">Image</a></li>
+    <li><a href="https://github.com/editor-js/inline-code">InlineCode</a></li>
+    <li><a href="https://github.com/editor-js/embed">Embed</a></li>
+    <li><a href="https://github.com/editor-js/quote">Quote</a></li>
+    <li><a href="https://github.com/editor-js/marker">Marker</a></li>
+    <li><a href="https://github.com/editor-js/code">Code</a></li>
+    <li><a href="https://github.com/editor-js/link">Link</a></li>
+    <li><a href="https://github.com/editor-js/delimiter">Delimiter</a></li>
+    <li><a href="https://github.com/editor-js/raw">Raw</a></li>
+  </ol>  
 </td>
 
 <td width="50%" align="center">
-- [Table](https://github.com/editor-js/table)
-- [Warning](https://github.com/editor-js/warning)
-- [Paragraph](https://github.com/editor-js/paragraph)
-- [Checklist](https://github.com/editor-js/checklist)
-- [Embed](https://github.com/editor-js/embed)
-- [Attaches](https://github.com/editor-js/attaches)
-- [Text Variant Tune](https://github.com/editor-js/text-variant-tune)
-- [Change Case](https://github.com/maziyank/editorjs-change-case)
-- [Hyperlink](https://github.com/trinhtam/editorjs-hyperlink)
-- [Undo](https://github.com/kommitters/editorjs-undo)
-- [Text Color](https://github.com/flaming-cl/editorjs-text-color-plugin)
+  <ol start="13">
+    <li><a href="https://github.com/editor-js/table">Table</a></li>
+    <li><a href="https://github.com/editor-js/warning">Warning</a></li>
+    <li><a href="https://github.com/editor-js/paragraph">Paragraph</a></li>
+    <li><a href="https://github.com/editor-js/checklist">Checklist</a></li>
+    <li><a href="https://github.com/editor-js/attaches">Attaches</a></li>
+    <li><a href="https://github.com/editor-js/text-variant-tune">Text Variant Tune</a></li>
+    <li><a href="https://github.com/maziyank/editorjs-change-case">Change Case</a></li>
+    <li><a href="https://github.com/trinhtam/editorjs-hyperlink">Hyperlink</a></li>
+    <li><a href="https://github.com/kommitters/editorjs-undo"></a>Undo</li>
+    <li><a href="https://github.com/flaming-cl/editorjs-text-color-plugin">Text Color</a></li>
+  </ol>  
   </td>
 </tr>
 </table>
