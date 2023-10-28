@@ -39,7 +39,6 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
       <li><a href="https://github.com/editor-js/code">Code</a></li>
       <li><a href="https://github.com/editor-js/link">Link</a></li>
       <li><a href="https://github.com/editor-js/delimiter">Delimiter</a></li>
-     
     </ol>  
   </td>
 
