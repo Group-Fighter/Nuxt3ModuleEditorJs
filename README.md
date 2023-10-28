@@ -39,12 +39,12 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
       <li><a href="https://github.com/editor-js/code">Code</a></li>
       <li><a href="https://github.com/editor-js/link">Link</a></li>
       <li><a href="https://github.com/editor-js/delimiter">Delimiter</a></li>
+      <li><a href="https://github.com/editor-js/raw">Raw</a></li>
     </ol>  
   </td>
 
   <td width="50%" align="center">
-    <ol start="14">
-      <li><a href="https://github.com/editor-js/raw">Raw</a></li>
+    <ol start="13">
       <li><a href="https://github.com/editor-js/table">Table</a></li>
       <li><a href="https://github.com/editor-js/warning">Warning</a></li>
       <li><a href="https://github.com/editor-js/paragraph">Paragraph</a></li>
