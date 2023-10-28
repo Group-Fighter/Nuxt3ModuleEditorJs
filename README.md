@@ -146,7 +146,7 @@ const defaultApi = {
 
 export default defineNuxtConfig({
   ...
-  modules: ["~/module/[directory name for this module]/module"],
+  modules: ["nuxt3-editorjs"],
   Nuxt3EditorJS: {
     EditorJsConfig: {
       autofocus: true,
