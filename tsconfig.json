@@ -1,14 +1,14 @@
 {
   "extends": "./playground/.nuxt/tsconfig.json",
-  "compilerOptions": {
-    "module": "ESNext",
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "allowJs": true,
-    "noImplicitAny": false,
-    "skipLibCheck": true
-  },
-  "include": [
-    "src/global.d.ts"
-  ]
+  // "compilerOptions": {
+  //   "module": "ESNext",
+  //   "esModuleInterop": true,
+  //   "allowSyntheticDefaultImports": true,
+  //   "allowJs": true,
+  //   "noImplicitAny": false,
+  //   "skipLibCheck": true
+  // },
+  // "include": [
+  //   "src/global.d.ts"
+  // ]
 }
