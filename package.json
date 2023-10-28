@@ -62,5 +62,20 @@
     "editorjs-undo": "^2.0.25",
     "eslint": "^8.52.0",
     "nuxt": "^3.8.0"
-  }
+  },
+  "description": "[![Npm package version](https://badgen.net/npm/v/nuxt-editorjs)](https://npmjs.com/package/nuxt-editorjs) [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Group-Fighter/Nuxt3ModuleEditorJs.git"
+  },
+  "keywords": [
+    "editorjs",
+    "nuxt",
+    "3",
+    "editorjs"
+  ],
+  "bugs": {
+    "url": "https://github.com/Group-Fighter/Nuxt3ModuleEditorJs/issues"
+  },
+  "homepage": "https://github.com/Group-Fighter/Nuxt3ModuleEditorJs#readme"
 }
