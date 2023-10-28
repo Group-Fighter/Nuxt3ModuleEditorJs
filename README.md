@@ -24,7 +24,10 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 
 ## Supported Plugins
 
-- [Personality](https://github.com/editor-js/personality)
+<table border="0" align="center">
+<tr border="0">
+<td width="50%" align="center">
+  - [Personality](https://github.com/editor-js/personality)
 - [Header](https://github.com/editor-js/header)
 - [Nested List](https://github.com/editor-js/nested-list)
 - [Image](https://github.com/editor-js/image)
@@ -36,6 +39,10 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 - [Link](https://github.com/editor-js/link)
 - [Delimiter](https://github.com/editor-js/delimiter)
 - [Raw](https://github.com/editor-js/raw)
+  
+</td>
+
+<td width="50%" align="center">
 - [Table](https://github.com/editor-js/table)
 - [Warning](https://github.com/editor-js/warning)
 - [Paragraph](https://github.com/editor-js/paragraph)
@@ -47,6 +54,11 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 - [Hyperlink](https://github.com/trinhtam/editorjs-hyperlink)
 - [Undo](https://github.com/kommitters/editorjs-undo)
 - [Text Color](https://github.com/flaming-cl/editorjs-text-color-plugin)
+  </td>
+</tr>
+</table>
+
+
 
 ## Usage
 - We expose a : 
