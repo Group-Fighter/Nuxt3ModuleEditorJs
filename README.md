@@ -380,6 +380,7 @@ export default defineNuxtConfig({
 - Add the setting to your `tsconfig.ts` file:
 
 ```javascript
+// optional
 {
   "compilerOptions": {
     "module": "ESNext",
