@@ -26,7 +26,7 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 
 <table border="0" align="center" width="100%" >
 <tr border="0">
-  <td width="50%" align="center">
+  <td width="50%" align="left">
     <ol>
       <li><a href="https://github.com/editor-js/personality">Personality</a></li>
       <li><a href="https://github.com/editor-js/header">Header</a></li>
@@ -43,7 +43,7 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
     </ol>  
   </td>
 
-  <td width="50%" align="center">
+  <td width="50%" align="left">
     <ol start="13">
       <li><a href="https://github.com/editor-js/table">Table</a></li>
       <li><a href="https://github.com/editor-js/warning">Warning</a></li>
