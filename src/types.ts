@@ -233,7 +233,7 @@ export interface EditorJsToolsConfig {
   HeaderConfig?: {
     isEnabled: boolean;
     toolsConfig: Partial<HeaderConfig>;
-  };
+  },
   NestedListConfig?: {
     isEnabled: boolean;
     toolsConfig: Partial<NestedListConfig>;
