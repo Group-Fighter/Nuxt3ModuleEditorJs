@@ -134,7 +134,6 @@ watch(dat, (value) => {
   // eslint-disable-next-line no-console
   console.log(value)
   // using custom parse
-
   console.log(parse(value).join(''))
 }, { deep: true, immediate: true })
 </script>
