@@ -363,7 +363,30 @@ export default defineNuxtConfig({
   },
   vite: {
     optimizeDeps: {
-      include: ["@editorjs/editorjs"],
+      include: [
+        '@editorjs/editorjs', 
+        '@editorjs/header',
+        '@editorjs/image',
+        '@editorjs/checklist',
+        '@editorjs/link',
+        '@editorjs/raw',
+        '@editorjs/embed',
+        '@editorjs/quote',
+        '@editorjs/nested-list',
+        '@editorjs/paragraph',
+        '@editorjs/table',
+        '@editorjs/attaches',
+        '@editorjs/delimiter',
+        '@editorjs/marker',
+        'editorjs-change-case',
+        'editorjs-hyperlink',
+        '@editorjs/text-variant-tune',
+        '@editorjs/code',
+        '@editorjs/personality',
+        '@editorjs/warning',
+        '@editorjs/inline-code',
+        'editorjs-text-color-plugin',
+        'editorjs-undo'],
     },
     // optional
     build: {
