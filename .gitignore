@@ -55,4 +55,4 @@ Temporary Items
 /nuxt3-editorjs
 /dist
 
-package-lock.json
+./package-lock.json
