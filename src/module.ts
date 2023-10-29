@@ -1,4 +1,4 @@
-import { defineNuxtModule, createResolver, addComponentsDir, addPlugin, addServerHandler, useLogger } from '@nuxt/kit'
+import { defineNuxtModule, createResolver, addComponentsDir, addImportsDir, addPlugin, addServerHandler, useLogger } from '@nuxt/kit'
 import { defu } from 'defu'
 import { type ModuleOptions, type ApiModuleOptions, type ModuleOptionsConfig, type EditorJsToolsConfig } from './types'
 
@@ -323,6 +323,9 @@ export default defineNuxtModule<ModuleOptions>({
     addComponentsDir({
       path: componentsDir
     })
+
+    const composables = resolver.resolve('./runtime/composables')
+    addImportsDir(composables)
 
     const cssDir = resolver.resolve('./runtime/assets/css/editor.css')
     nuxt.options.css.push(cssDir)

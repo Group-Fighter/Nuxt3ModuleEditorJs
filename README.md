@@ -50,6 +50,7 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
       <li><a href="https://github.com/trinhtam/editorjs-hyperlink">Hyperlink</a></li>
       <li><a href="https://github.com/kommitters/editorjs-undo">Undo</a></li>
       <li><a href="https://github.com/flaming-cl/editorjs-text-color-plugin">Text Color</a></li>
+      <li><a href="https://github.com/pavittarx/editorjs-html">Parse HTML</a></li>
     </ol>  
   </td>
 </tr>
