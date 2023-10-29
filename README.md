@@ -111,8 +111,19 @@ const onInitialized = (NuxtEditorJs) => {
   console.log(NuxtEditorJs)
 }
 
+// https://github.com/pavittarx/editorjs-html/tree/master#extend-for-custom-blocks
+function customParser (block) {
+  return `<custom-tag> ${block.data.text} </custom-tag>`
+}
+const configParseHtml = {
+  custom: customParser
+}
+const { parse, parseBlock, parseStrict, validate } = useParseHtml(configParseHtml)
+
 watch(dat, (value) => {
   console.log(value)
+   // using custom parse
+  console.log(parse(value).join(''))
 }, { deep: true, immediate: true })
 
 </script>
