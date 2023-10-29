@@ -128,14 +128,14 @@ function customParser (block) {
 const configParseHtml = {
   custom: customParser
 }
-const { parse, parseBlock, parseStrict, validate, resultString } = useParseHtml(configParseHtml)
+const { parse, parseBlock, parseStrict, validate } = useParseHtml(configParseHtml)
 
 watch(dat, (value) => {
   // eslint-disable-next-line no-console
   console.log(value)
   // using custom parse
-  parse(value)
-  console.log(resultString())
+
+  console.log(parse(value).join(''))
 }, { deep: true, immediate: true })
 </script>
 
