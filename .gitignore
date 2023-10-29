@@ -54,3 +54,5 @@ Temporary Items
 /playground/public
 /nuxt3-editorjs
 /dist
+
+package-lock.json
