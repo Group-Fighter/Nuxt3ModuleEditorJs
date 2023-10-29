@@ -123,14 +123,13 @@ declare module "editorjs-text-color-plugin" {
     constructor(config: any);
   }
 }
-
-declare global {
-  declare module "@editorjs/checklist" {
-    let Checklist: typeof import("@editorjs/checklist").Checklist;
-  }
-  declare module "@editorjs/image" {
-    let ImageTool: typeof import("@editorjs/image").ImageTool;
-  }
-}
+// declare global {
+//   declare module "@editorjs/checklist" {
+//     let Checklist: typeof import("@editorjs/checklist").Checklist;
+//   }
+//   declare module "@editorjs/image" {
+//     let ImageTool: typeof import("@editorjs/image").ImageTool;
+//   }
+// }
 
 export {};
