@@ -1,7 +1,7 @@
 {
   "author": "azie abdullah <finetoo97@gmail.com>",
   "name": "nuxt3-editorjs",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "[![Npm package version](https://badgen.net/npm/v/nuxt-editorjs)](https://npmjs.com/package/nuxt-editorjs) [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)",
   "repository": {
     "type": "git",
@@ -71,6 +71,7 @@
     "editorjs-text-alignment-blocktune": "^1.0.3",
     "editorjs-text-color-plugin": "^2.0.4",
     "editorjs-undo": "^2.0.25",
+    "editorjs-drag-drop": "^1.1.13",
     "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
@@ -78,7 +79,6 @@
     "@nuxt/module-builder": "latest",
     "@nuxt/schema": "^3.8.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
-    "editorjs-drag-drop": "^1.1.13",
     "eslint": "^8.52.0",
     "nuxt": "^3.8.0",
     "rollup": "^3.29.4"
