@@ -70,16 +70,18 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 
 ```vue
 <template>
-  <ClientOnly>
-    <NuxtEditorJs
-      v-model:modelValue="tempData"
-      :config="config"
-      :holder="holder"
-      :on-ready="onReady"
-      :on-change="onChange"
-      :initialized="onInitialized"
-    />
-  </ClientOnly>
+  <div class="editor-page">
+    <ClientOnly>
+      <NuxtEditorJs
+        v-model:modelValue="dat"
+        :config="config"
+        :holder="holder"
+        :on-ready="onReady"
+        :on-change="onChange"
+        :initialized="onInitialized"
+      />
+    </ClientOnly>
+  </div>
 </template>
 
 <script setup>
@@ -125,7 +127,7 @@ const configParseHtml = {
 }
 const { parse, parseBlock, parseStrict, validate } = useParseHtml(configParseHtml)
 
-watch(dat, (value) => {
+watch(tempData, (value) => {
   console.log(value)
    // using custom parse
   console.log(parse(value).join(''))
@@ -483,7 +485,8 @@ export default defineNuxtConfig({
         'editorjs-drag-drop',
         '@calumk/editorjs-columns',
         'editorjs-text-alignment-blocktune',
-        '@canburaks/text-align-editorjs'
+        '@canburaks/text-align-editorjs',
+        'editorjs-html'
         ],
     },
     // optional
