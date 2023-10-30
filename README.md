@@ -73,7 +73,7 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
   <div class="editor-page">
     <ClientOnly>
       <NuxtEditorJs
-        v-model:modelValue="dat"
+        v-model:modelValue="tempData"
         :config="config"
         :holder="holder"
         :on-ready="onReady"
@@ -125,6 +125,7 @@ function customParser (block) {
 const configParseHtml = {
   custom: customParser
 }
+// https://github.com/pavittarx/editorjs-html
 const { parse, parseBlock, parseStrict, validate } = useParseHtml(configParseHtml)
 
 watch(tempData, (value) => {
@@ -169,7 +170,19 @@ const defaultApi = {
   ImageTool: {
     basePath: '/api/upload-file',
     imageDir: './playground/public/imagetool',
-    mime: ['image/png', 'image/jpeg', 'image/gif'],
+    mime: [
+      'image/jpg',
+      'image/jpeg',
+      'image/png',
+      'image/gif',
+      'image/bmp',
+      'image/tiff',
+      'image/webp',
+      'image/svg+xml',
+      'image/x-icon',
+      'image/vnd.microsoft.icon',
+      'image/vnd.adobe.photoshop'
+    ],
     maxFileSize: 1000000
   },
   LinkTool: {
@@ -178,13 +191,37 @@ const defaultApi = {
   AttachesTool: {
     basePath: '/api/attachment-file',
     imageDir: './playground/public/attachmenttool',
-    mime: ['image/png', 'image/jpeg', 'image/gif'],
+    mime: [
+      'application/pdf',
+      'application/msword',
+      'application/vnd.ms-excel',
+      'application/vnd.ms-powerpoint',
+      'application/xml',
+      'application/json',
+      'application/rtf',
+      'application/zip',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'application/vnd.openxmlformats-officedocument.presentationml.presentation'
+    ],
     maxFileSize: 1000000
   },
   PersonalityTool: {
     basePath: '/api/upload-personality-image',
     imageDir: './playground/public/personalitytool',
-    mime: ['image/png', 'image/jpeg', 'image/gif'],
+    mime: [
+      'image/jpg',
+      'image/jpeg',
+      'image/png',
+      'image/gif',
+      'image/bmp',
+      'image/tiff',
+      'image/webp',
+      'image/svg+xml',
+      'image/x-icon',
+      'image/vnd.microsoft.icon',
+      'image/vnd.adobe.photoshop'
+    ],
     maxFileSize: 1000000
   }
 }
