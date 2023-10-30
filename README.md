@@ -36,12 +36,12 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
       <li><a href="https://github.com/editor-js/delimiter">Delimiter</a></li>
       <li><a href="https://github.com/editor-js/raw">Raw</a></li>
       <li><a href="https://github.com/kommitters/editorjs-drag-drop">Drag Drop</a></li>
+      <li><a href="https://github.com/editor-js/table">Table</a></li>
     </ol>  
   </td>
 
   <td width="50%" align="left">
-    <ol start="14">
-      <li><a href="https://github.com/editor-js/table">Table</a></li>
+    <ol start="15">
       <li><a href="https://github.com/editor-js/warning">Warning</a></li>
       <li><a href="https://github.com/editor-js/paragraph">Paragraph</a></li>
       <li><a href="https://github.com/editor-js/checklist">Checklist</a></li>
@@ -64,22 +64,24 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 
 ## Usage
 - We expose an : 
-  - Single `<NuxtEditorJs />` component.
+  - One `<NuxtEditorJs />` component.
   - Three backend for upload file and one backend for scrape meta data (Link Tool)
   - One Composables `const { parse, parseBlock, parseStrict, validate } = useParseHtml(configParseHtml)` to parseHtml
 
 ```vue
 <template>
-  <ClientOnly>
-    <NuxtEditorJs
-      v-model:modelValue="tempData"
-      :config="config"
-      :holder="holder"
-      :on-ready="onReady"
-      :on-change="onChange"
-      :initialized="onInitialized"
-    />
-  </ClientOnly>
+  <div class="editor-page">
+    <ClientOnly>
+      <NuxtEditorJs
+        v-model:modelValue="dat"
+        :config="config"
+        :holder="holder"
+        :on-ready="onReady"
+        :on-change="onChange"
+        :initialized="onInitialized"
+      />
+    </ClientOnly>
+  </div>
 </template>
 
 <script setup>
@@ -125,7 +127,7 @@ const configParseHtml = {
 }
 const { parse, parseBlock, parseStrict, validate } = useParseHtml(configParseHtml)
 
-watch(dat, (value) => {
+watch(tempData, (value) => {
   console.log(value)
    // using custom parse
   console.log(parse(value).join(''))
@@ -483,7 +485,8 @@ export default defineNuxtConfig({
         'editorjs-drag-drop',
         '@calumk/editorjs-columns',
         'editorjs-text-alignment-blocktune',
-        '@canburaks/text-align-editorjs'
+        '@canburaks/text-align-editorjs',
+        'editorjs-html'
         ],
     },
     // optional
