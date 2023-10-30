@@ -71,6 +71,7 @@
     "editorjs-text-alignment-blocktune": "^1.0.3",
     "editorjs-text-color-plugin": "^2.0.4",
     "editorjs-undo": "^2.0.25",
+    "editorjs-drag-drop": "^1.1.13",
     "multer": "^1.4.5-lts.1"
   },
   "devDependencies": {
@@ -78,7 +79,6 @@
     "@nuxt/module-builder": "latest",
     "@nuxt/schema": "^3.8.0",
     "@nuxtjs/eslint-config-typescript": "^12.1.0",
-    "editorjs-drag-drop": "^1.1.13",
     "eslint": "^8.52.0",
     "nuxt": "^3.8.0",
     "rollup": "^3.29.4"
