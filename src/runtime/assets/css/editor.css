@@ -423,3 +423,76 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 }
+
+
+/* columns css */
+/* REQUIRED STYLES */
+.ce-editorjsColumns_col {
+  flex: 50%;
+}
+.ce-editorjsColumns_wrapper {
+  display: flex;
+  width: 100%;
+  gap: 10px;
+  margin-bottom: 10px;
+  flex-direction: row;
+}
+.ce-editorjsColumns_wrapper .ce-toolbar__actions {
+  z-index: 0;
+}
+.ce-editorjsColumns_wrapper .ce-toolbar {
+  z-index: 4;
+}
+.ce-editorjsColumns_wrapper .ce-popover {
+  z-index: 4000;
+}
+@media (max-width: 800px) {
+  .ce-editorjsColumns_wrapper {
+    flex-direction: column;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+ }
+}
+/* These styles will also affect the parent editor!!!!!! */
+.ce-inline-toolbar {
+  z-index: 1000;
+}
+.ce-block__content, .ce-toolbar__content {
+  max-width: calc(100% - 50px);
+ /* example value, adjust for your own use case */
+}
+/* */
+.ce-toolbar__actions {
+  right: calc(100% + 30px);
+  background-color: rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+}
+/* Would be better to remove --narrow mode */
+/* Issue Raised */
+/* // This causes an error which is good i think? */
+.codex-editor--narrow .codex-editor__redactor {
+  margin: 0;
+}
+/* Required to prevent clipping */
+.ce-toolbar {
+  z-index: 4;
+}
+.codex-editor {
+ /* background:#f00 !important;
+  */
+  z-index: auto !important;
+}
+/* end columns css */
+
+
+/* handler hypelink not found icon */
+
+button[data-tool="hyperlink"] {
+  display: inline-block;
+  margin: auto 5px;
+  width: 13px;
+  height: 50px;
+  background: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDUxMiA1MTIiIGhlaWdodD0iNTEycHgiIGlkPSJMYXllcl8xIiB2ZXJzaW9uPSIxLjEiIHZpZXdCb3g9IjAgMCA1MTIgNTEyIiB3aWR0aD0iNTEycHgiIHhtbDpzcGFjZT0icHJlc2VydmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgeG1sbnM6eGxpbms9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkveGxpbmsiPjxnPjxwYXRoIGQ9Ik01MDMuNDY2LDEzMi4yNjhMMzc5LjczMyw4LjUzNGMtMTEuMzgtMTEuMzc5LTI5Ljg1NC0xMS4zNzktNDEuMjM0LDBMMjE0Ljc2NywxMzIuMjY4ICAgYy0xMS40MTEsMTEuMzc5LTExLjQxMSwyOS44NTQsMCw0MS4yNjVsMjAuNjAyLDIwLjYwMUwzNTkuMTAxLDcwLjQwMUw0NDEuNiwxNTIuOUwzMTcuODY2LDI3Ni42MzNsMjAuNjMyLDIwLjYzMyAgIGMxMS4zOCwxMS4zNzksMjkuODU0LDExLjM3OSw0MS4yMzQsMGwxMjMuNzMyLTEyMy43MzJDNTE0Ljg0NSwxNjIuMTIyLDUxNC44NDUsMTQzLjY0Niw1MDMuNDY2LDEzMi4yNjh6Ii8+PHBhdGggZD0iTTI3Ni42MzMsMzE3Ljg2NkwxNTIuOSw0NDEuNmwtODIuNDk5LTgyLjQ5OGwxMjMuNzMyLTEyMy43MzNsLTIwLjYzMi0yMC42MzJjLTExLjM3OS0xMS4zOC0yOS44NTQtMTEuMzgtNDEuMjMzLDAgICBMOC41MzQsMzM4LjQ2OGMtMTEuMzgsMTEuNDEtMTEuMzgsMjkuODg2LDAsNDEuMjY1bDEyMy43MzIsMTIzLjczM2MxMS4zNzksMTEuMzc5LDI5Ljg1NCwxMS4zNzksNDEuMjMzLDBsMTIzLjczMi0xMjMuNzMzICAgYzExLjQxLTExLjM3OSwxMS40MS0yOS44NTQsMC00MS4yNjVMMjc2LjYzMywzMTcuODY2eiIvPjxwYXRoIGQ9Ik0xNzMuNTAxLDMzOC40NjhjMTEuNDExLDExLjQxLDI5Ljg1NCwxMS40MSw0MS4yNjYsMGwxMjMuNzMxLTEyMy43MzJjMTEuMzgtMTEuMzgsMTEuMzgtMjkuODI0LDAtNDEuMjAzICAgYy0xMS40MDktMTEuNDEtMjkuODU0LTExLjQxLTQxLjI2NSwwTDE3My41MDEsMjk3LjI2NkMxNjIuMTIyLDMwOC42NDUsMTYyLjEyMiwzMjcuMDg5LDE3My41MDEsMzM4LjQ2OHoiLz48L2c+PC9zdmc+') 50% 50% no-repeat;
+  background-size: 100%;
+}

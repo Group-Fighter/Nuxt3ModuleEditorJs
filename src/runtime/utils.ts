@@ -20,19 +20,29 @@ import Warning from '@editorjs/warning'
 import InlineCode from '@editorjs/inline-code'
 import ColorPlugin from 'editorjs-text-color-plugin'
 import Undo from 'editorjs-undo'
+import DragDrop from 'editorjs-drag-drop'
+import editorjsColumns from '@calumk/editorjs-columns'
+import AlignmentTuneTool from 'editorjs-text-alignment-blocktune'
+import TextAlign from '@canburaks/text-align-editorjs'
 
+import EditorJS, { type ToolConstructable, type ToolSettings, type EditorConfig } from '@editorjs/editorjs'
 import { type EditorJsToolsConfig, type ModuleOptions } from '../types'
 
-
-export const initUndoModule = (editor: any, configModule: ModuleOptions) => {
-  const config = {
-    shortcuts: {
-      undo: configModule.EditorJsToolsConfig.UndoConfig?.toolsConfig.undo,
-      redo: configModule.EditorJsToolsConfig.UndoConfig?.toolsConfig.redo
+export const initClassModule = (editor: any, configModule: ModuleOptions) => {
+  if (configModule.EditorJsToolsConfig.UndoConfig?.isEnabled) {
+    const config = {
+      shortcuts: {
+        undo: configModule.EditorJsToolsConfig.UndoConfig?.toolsConfig.undo,
+        redo: configModule.EditorJsToolsConfig.UndoConfig?.toolsConfig.redo
+      }
     }
+    // eslint-disable-next-line no-new
+    new Undo({ editor, config })
   }
-  // eslint-disable-next-line no-new
-  new Undo({ editor, config })
+  if (configModule.EditorJsToolsConfig.DragDropConfig?.isEnabled) {
+    // eslint-disable-next-line no-new
+    new DragDrop(editor)
+  }
 }
 
 export const UploadFile = (file: File, configModule:ModuleOptions): Promise<{ success: number; file: { url: string; } }> => {
@@ -115,12 +125,14 @@ export const DefaultTool = (configModule:ModuleOptions) => {
   const defaultTools: EditorJsToolsConfig = {
     HeaderConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.HeaderConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.HeaderConfig?.supportInColumn as boolean,
       toolsConfig: {
         header: Header
       }
     },
     NestedListConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.NestedListConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.NestedListConfig?.supportInColumn as boolean,
       toolsConfig: {
         nestedlist: {
           class: NestedList,
@@ -133,6 +145,7 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     ImageConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.ImageConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.ImageConfig?.supportInColumn as boolean,
       toolsConfig: {
         image: {
           class: ImageTool,
@@ -151,6 +164,7 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     ChecklistConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.ChecklistConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.ChecklistConfig?.supportInColumn as boolean,
       toolsConfig: {
         checklist: {
           class: Checklist,
@@ -160,6 +174,7 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     LinkToolConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.LinkToolConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.LinkToolConfig?.supportInColumn as boolean,
       toolsConfig: {
         linkTool: {
           class: LinkTool,
@@ -171,18 +186,21 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     RawConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.RawConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.RawConfig?.supportInColumn as boolean,
       toolsConfig: {
         raw: RawTool
       }
     },
     EmbedConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.EmbedConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.EmbedConfig?.supportInColumn as boolean,
       toolsConfig: {
         embed: Embed
       }
     },
     QuoteConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.QuoteConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.QuoteConfig?.supportInColumn as boolean,
       toolsConfig: {
         quote: {
           class: Quote,
@@ -197,6 +215,7 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     ParagraphConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.ParagraphConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.ParagraphConfig?.supportInColumn as boolean,
       toolsConfig: {
         paragraph: {
           class: Paragraph,
@@ -206,6 +225,7 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     TableConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.TableConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.TableConfig?.supportInColumn as boolean,
       toolsConfig: {
         table: {
           class: Table,
@@ -219,6 +239,7 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     AttachesConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.AttachesConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.AttachesConfig?.supportInColumn as boolean,
       toolsConfig: {
         attaches: {
           class: AttachesTool,
@@ -230,12 +251,14 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     DelimiterConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.DelimiterConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.DelimiterConfig?.supportInColumn as boolean,
       toolsConfig: {
         delimiter: Delimiter
       }
     },
     MarkerConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.MarkerConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.MarkerConfig?.supportInColumn as boolean,
       toolsConfig: {
         Marker: {
           class: Marker,
@@ -245,6 +268,7 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     ColorConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.ColorConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.ColorConfig?.supportInColumn as boolean,
       toolsConfig: {
         Color: {
           class: ColorPlugin,
@@ -259,6 +283,7 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     ChangeCaseConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.ChangeCaseConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.ChangeCaseConfig?.supportInColumn as boolean,
       toolsConfig: {
         changeCase: {
           class: ChangeCase,
@@ -271,6 +296,7 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     HyperlinkConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.HyperlinkConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.HyperlinkConfig?.supportInColumn as boolean,
       toolsConfig: {
         hyperlink: {
           class: Hyperlink,
@@ -287,18 +313,21 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     TextVariantConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.TextVariantConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.TextVariantConfig?.supportInColumn as boolean,
       toolsConfig: {
         textVariant: TextVariantTune
       }
     },
     CodeConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.CodeConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.CodeConfig?.supportInColumn as boolean,
       toolsConfig: {
         code: CodeTool
       }
     },
     PersonalityConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.PersonalityConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.PersonalityConfig?.supportInColumn as boolean,
       toolsConfig: {
         personality: {
           class: Personality,
@@ -310,6 +339,7 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     WarningConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.WarningConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.WarningConfig?.supportInColumn as boolean,
       toolsConfig: {
         warning: {
           class: Warning,
@@ -324,16 +354,120 @@ export const DefaultTool = (configModule:ModuleOptions) => {
     },
     InlineCodeConfig: {
       isEnabled: configModule.EditorJsToolsConfig?.InlineCodeConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.InlineCodeConfig?.supportInColumn as boolean,
       toolsConfig: {
         inlineCode: {
           class: InlineCode,
           shortcut: configModule.EditorJsToolsConfig?.InlineCodeConfig?.toolsConfig.inlineCode?.shortcut as string
         }
       }
+    },
+    AlignmentTuneToolConfig: {
+      isEnabled: configModule.EditorJsToolsConfig?.AlignmentTuneToolConfig?.isEnabled as boolean,
+      toolsConfig: {
+        alligment: {
+          class: AlignmentTuneTool,
+          config: {
+            default: configModule.EditorJsToolsConfig?.AlignmentTuneToolConfig?.toolsConfig?.alligment?.config.default as string
+          }
+        }
+      }
+    },
+    TextAlignConfig: {
+      isEnabled: configModule.EditorJsToolsConfig?.TextAlignConfig?.isEnabled as boolean,
+      supportInColumn: configModule.EditorJsToolsConfig?.TextAlignConfig?.supportInColumn as boolean,
+      toolsConfig: {
+        textAlign: TextAlign
+      }
+    }
+  }
+  const ColumnsConfig: EditorJsToolsConfig = {
+    ColumnsConfig: {
+      isEnabled: configModule.EditorJsToolsConfig?.ColumnsConfig?.isEnabled as boolean,
+      toolsConfig: {
+        columns: {
+          class: editorjsColumns,
+          config: {
+            tools: composeToolsInColumns(defaultTools),
+            // @ts-ignore
+            EditorJsLibrary: EditorJS // Pass the library instance to the columns instance.
+          }
+        }
+      }
     }
   }
 
-  return defaultTools
+  const result = Object.assign({}, defaultTools, ColumnsConfig)
+
+  return result
+}
+
+export const registerTools = (config: Record<string, any>): Record<string, ToolConstructable | ToolSettings> => {
+  const result: Record<string, ToolConstructable | ToolSettings> = {}
+
+  for (const toolName in config) {
+    const toolConfig = config[toolName]
+
+    if (typeof toolConfig === 'object') {
+      const { class: toolClass, ...settings } = toolConfig
+      result[toolName] = { class: toolClass, ...settings }
+    } else {
+      result[toolName] = toolConfig
+    }
+  }
+
+  return result
+}
+
+export const composeTools = (config: EditorJsToolsConfig): Record<string, ToolConstructable | ToolSettings> => {
+  let result: Record<string, ToolConstructable | ToolSettings> = {}
+  let temp: Record<string, ToolConstructable | ToolSettings> = {}
+  for (const toolName in config) {
+    // @ts-ignore
+    const toolConfig = config[toolName]
+
+    if (toolConfig.isEnabled) {
+      temp = registerTools(toolConfig.toolsConfig)
+      result = Object.assign({}, result, temp)
+    }
+  }
+
+  return result
+}
+
+export const composeToolsInColumns = (config: EditorJsToolsConfig): Record<string, ToolConstructable | ToolSettings> => {
+  let result: Record<string, ToolConstructable | ToolSettings> = {}
+  let temp: Record<string, ToolConstructable | ToolSettings> = {}
+  for (const toolName in config) {
+    // @ts-ignore
+    const toolConfig = config[toolName]
+
+    if (toolConfig.isEnabled && 'supportInColumn' in toolConfig && toolConfig.supportInColumn) {
+      temp = registerTools(toolConfig.toolsConfig)
+      result = Object.assign({}, result, temp)
+    }
+  }
+
+  return result
+}
+
+export const composeTunes = (configTools: EditorJsToolsConfig, configModule:ModuleOptions, config: EditorConfig): string[] => {
+  const result: string[] = []
+  const { tunes } = config
+  const tune = tunes as string[] ?? configModule.EditorJsConfig.tunes as string[]
+
+  for (const toolNameConfig in configTools) {
+    // @ts-ignore
+    const toolConfig = configTools[toolNameConfig]
+    if (toolConfig.isEnabled) {
+      for (const toolName in toolConfig.toolsConfig) {
+        if (tune.includes(toolName)) {
+          result.push(toolName)
+        }
+      }
+    }
+  }
+  return result
 }
 
 export const GenerateRandomString = (length:number) => {
