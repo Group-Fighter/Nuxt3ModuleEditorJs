@@ -12,7 +12,7 @@ import {
 import EditorJS, { type API, type BlockMutationEvent, type EditorConfig, type OutputData, type ToolConstructable, type ToolSettings, type OutputBlockData } from '@editorjs/editorjs'
 
 import { type EditorJsToolsConfig, type ModuleOptions } from '../../types'
-import { initUndoModule, DefaultTool } from '../utils'
+import { initClassModule, DefaultTool, registerTools, composeTools, composeTunes } from '../utils'
 // @ts-ignore
 import { useRuntimeConfig } from '#imports'
 
@@ -75,11 +75,13 @@ export const NuxtEditorJs = defineComponent({
       setContent(props.config, props.modelValue)
 
       const initTools = composeTools(defaultTools)
+
       let customTools = {}
       if (props.config.tools) {
         customTools = registerTools(props.config.tools)
       }
       props.config.tools = Object.assign({}, initTools, customTools)
+      props.config.tunes = composeTunes(defaultTools, configModule, props.config)
 
       state.editor = new EditorJS({
         holder: props.holder || holder,
@@ -110,7 +112,7 @@ export const NuxtEditorJs = defineComponent({
 
       props.config.onReady = () => {
         props.onReady?.()
-        initUndoModule(state.editor, configModule)
+        initClassModule(state.editor, configModule)
       }
     }
 
@@ -125,39 +127,6 @@ export const NuxtEditorJs = defineComponent({
       config.i18n = i18n ?? configModule.EditorJsConfig.i18n
       // config.inlineToolbar = inlineToolbar ?? configModule.EditorJsConfig.inlineToolbar
       // config.tunes = tunes ?? configModule.EditorJsConfig.tunes
-    }
-
-    function registerTools (config: Record<string, any>): Record<string, ToolConstructable | ToolSettings> {
-      const result: Record<string, ToolConstructable | ToolSettings> = {}
-
-      for (const toolName in config) {
-        const toolConfig = config[toolName]
-
-        if (typeof toolConfig === 'object') {
-          const { class: toolClass, ...settings } = toolConfig
-          result[toolName] = { class: toolClass, ...settings }
-        } else {
-          result[toolName] = toolConfig
-        }
-      }
-
-      return result
-    }
-
-    function composeTools (config: EditorJsToolsConfig): Record<string, ToolConstructable | ToolSettings> {
-      let result: Record<string, ToolConstructable | ToolSettings> = {}
-      let temp: Record<string, ToolConstructable | ToolSettings> = {}
-      for (const toolName in config) {
-        // @ts-ignore
-        const toolConfig = config[toolName]
-
-        if (toolConfig.isEnabled) {
-          temp = registerTools(toolConfig.toolsConfig)
-          result = Object.assign({}, result, temp)
-        }
-      }
-
-      return result
     }
 
     function removeFunctEditorConfig (props: any) {

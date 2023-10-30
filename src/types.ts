@@ -1,5 +1,5 @@
 // @ts-ignore
-import { type I18nConfig, type LogLevels } from '@editorjs/editorjs'
+import EditorJS, { type I18nConfig, type LogLevels, type ToolConstructable, type ToolSettings } from '@editorjs/editorjs'
 
 export interface GlobalEditorJs {
    autofocus?: boolean;
@@ -189,6 +189,10 @@ export interface CodeConfig {
   code?: any;
 }
 
+export interface TextAlignConfig {
+  textAlign?: any;
+}
+
 export interface PersonalityConfig {
   personality: {
     class?: any;
@@ -222,6 +226,25 @@ export interface UndoConfig {
   redo: string;
 }
 
+export interface AlligmentConfig {
+  alligment : {
+    class ?: any,
+    config : {
+      default : string,
+    }
+  },
+}
+
+export interface ColumnsConfig {
+  columns : {
+    class ?: any,
+    config ?: {
+      EditorJsLibrary ?: EditorJS, // Pass the library instance to the columns instance.
+      tools ?: Record<string, ToolConstructable | ToolSettings> // IMPORTANT! ref the column_tools
+    }
+  },
+}
+
 export interface ApiModuleOptions {
   ImageTool: Partial<ApiImageToolOptions>,
   LinkTool: Partial<ApiLinkToolOptions>,
@@ -232,91 +255,130 @@ export interface ApiModuleOptions {
 export interface EditorJsToolsConfig {
   HeaderConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<HeaderConfig>;
   },
   NestedListConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<NestedListConfig>;
   };
   ImageConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<ImageConfig>;
   };
   ChecklistConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<ChecklistConfig>;
   };
   LinkToolConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<LinkToolConfig>;
   };
   RawConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<RawConfig>;
   };
   EmbedConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<EmbedConfig>;
   };
   QuoteConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<QuoteConfig>;
   };
   ParagraphConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<ParagraphConfig>;
   };
   TableConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<TableConfig>;
   };
   AttachesConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<AttachesConfig>;
   };
   DelimiterConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<DelimiterConfig>;
   };
   MarkerConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<MarkerConfig>;
   };
   ColorConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<ColorConfig>;
   };
   ChangeCaseConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<ChangeCaseConfig>;
   };
   HyperlinkConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<HyperlinkConfig>;
   };
   TextVariantConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<TextVariantConfig>;
   };
   CodeConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<CodeConfig>;
   };
   PersonalityConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<PersonalityConfig>;
   };
   WarningConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<WarningConfig>;
   };
   InlineCodeConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<InlineCodeConfig>;
   };
   UndoConfig?: {
     isEnabled: boolean;
+    supportInColumn: boolean;
     toolsConfig: Partial<UndoConfig>;
+  };
+  DragDropConfig?: {
+    isEnabled: boolean;
+    supportInColumn: boolean;
+  };
+  ColumnsConfig?: {
+    isEnabled: boolean;
+    toolsConfig?: Partial<ColumnsConfig>;
+  };
+  AlignmentTuneToolConfig?: {
+    isEnabled: boolean;
+    toolsConfig?: Partial<AlligmentConfig>;
+  };
+  TextAlignConfig?: {
+    isEnabled: boolean;
+    supportInColumn: boolean;
+    toolsConfig?: Partial<TextAlignConfig>;
   };
 }
 

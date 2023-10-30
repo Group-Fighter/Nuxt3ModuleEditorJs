@@ -37,15 +37,17 @@ export default defineNuxtConfig({
       logLevel: 'ERROR',
       i18n: undefined,
       inlineToolbar: ['bold', 'italic', 'underline'],
-      tunes: ['textVariant']
+      tunes: ['textVariant', 'alligment']
     },
     EditorJsToolsConfig: {
       HeaderConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {}
       },
       NestedListConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           nestedlist: {
             inlineToolbar: true,
@@ -57,6 +59,7 @@ export default defineNuxtConfig({
       },
       ImageConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           image: {
             config: {
@@ -70,6 +73,7 @@ export default defineNuxtConfig({
       },
       ChecklistConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           checklist: {
             inlineToolbar: true
@@ -78,6 +82,7 @@ export default defineNuxtConfig({
       },
       LinkToolConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           linkTool: {
             config: {
@@ -88,14 +93,17 @@ export default defineNuxtConfig({
       },
       RawConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {}
       },
       EmbedConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {}
       },
       QuoteConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           quote: {
             inlineToolbar: true,
@@ -109,6 +117,7 @@ export default defineNuxtConfig({
       },
       ParagraphConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           paragraph: {
             inlineToolbar: true
@@ -117,6 +126,7 @@ export default defineNuxtConfig({
       },
       TableConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           table: {
             inlineToolbar: true,
@@ -129,6 +139,7 @@ export default defineNuxtConfig({
       },
       AttachesConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           attaches: {
             config: {
@@ -139,10 +150,12 @@ export default defineNuxtConfig({
       },
       DelimiterConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {}
       },
       MarkerConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           Marker: {
             shortcut: 'CMD+SHIFT+M'
@@ -151,6 +164,7 @@ export default defineNuxtConfig({
       },
       ColorConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           Color: {
             config: {
@@ -176,6 +190,7 @@ export default defineNuxtConfig({
       },
       ChangeCaseConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           changeCase: {
             config: {
@@ -187,6 +202,7 @@ export default defineNuxtConfig({
       },
       HyperlinkConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           hyperlink: {
             config: {
@@ -202,14 +218,17 @@ export default defineNuxtConfig({
       },
       TextVariantConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: { }
       },
       CodeConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: { }
       },
       PersonalityConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           personality: {
             config: {
@@ -220,6 +239,7 @@ export default defineNuxtConfig({
       },
       WarningConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           warning: {
             inlineToolbar: true,
@@ -233,11 +253,41 @@ export default defineNuxtConfig({
       },
       InlineCodeConfig: {
         isEnabled: true,
+        supportInColumn: true,
         toolsConfig: {
           inlineCode: {
             shortcut: 'CMD+SHIFT+M'
           }
         }
+      },
+      UndoConfig: {
+        isEnabled: true,
+        supportInColumn: true,
+        toolsConfig: {
+          undo: 'CMD+X',
+          redo: 'CMD+ALT+C'
+        }
+      },
+      DragDropConfig: {
+        isEnabled: true,
+        supportInColumn: true
+      },
+      ColumnsConfig: {
+        isEnabled: true
+      },
+      AlignmentTuneToolConfig: {
+        isEnabled: true,
+        toolsConfig: {
+          alligment: {
+            config: {
+              default: 'left'
+            }
+          }
+        }
+      },
+      TextAlignConfig: {
+        isEnabled: true,
+        supportInColumn: true
       }
     },
     Api: defaultApi
@@ -247,7 +297,34 @@ export default defineNuxtConfig({
   ],
   vite: {
     optimizeDeps: {
-      include: ['@editorjs/editorjs']
+      include: [
+        '@editorjs/editorjs',
+        '@editorjs/header',
+        '@editorjs/image',
+        '@editorjs/checklist',
+        '@editorjs/link',
+        '@editorjs/raw',
+        '@editorjs/embed',
+        '@editorjs/quote',
+        '@editorjs/nested-list',
+        '@editorjs/paragraph',
+        '@editorjs/table',
+        '@editorjs/attaches',
+        '@editorjs/delimiter',
+        '@editorjs/marker',
+        'editorjs-change-case',
+        'editorjs-hyperlink',
+        '@editorjs/text-variant-tune',
+        '@editorjs/code',
+        '@editorjs/personality',
+        '@editorjs/warning',
+        '@editorjs/inline-code',
+        'editorjs-text-color-plugin',
+        'editorjs-undo',
+        'editorjs-drag-drop',
+        'editorjs-text-alignment-blocktune',
+        '@canburaks/text-align-editorjs'
+      ]
     },
     build: {
       rollupOptions: {

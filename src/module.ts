@@ -73,10 +73,12 @@ const defaultApi: ApiModuleOptions = {
 const defaultTools: EditorJsToolsConfig = {
   HeaderConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {}
   },
   NestedListConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       nestedlist: {
         inlineToolbar: true,
@@ -88,6 +90,7 @@ const defaultTools: EditorJsToolsConfig = {
   },
   ImageConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       // image: {
       //   config: {
@@ -101,6 +104,7 @@ const defaultTools: EditorJsToolsConfig = {
   },
   ChecklistConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       checklist: {
         inlineToolbar: true
@@ -109,6 +113,7 @@ const defaultTools: EditorJsToolsConfig = {
   },
   LinkToolConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       linkTool: {
         config: {
@@ -119,14 +124,17 @@ const defaultTools: EditorJsToolsConfig = {
   },
   RawConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {}
   },
   EmbedConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {}
   },
   QuoteConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       quote: {
         inlineToolbar: true,
@@ -140,6 +148,7 @@ const defaultTools: EditorJsToolsConfig = {
   },
   ParagraphConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       paragraph: {
         inlineToolbar: true
@@ -148,6 +157,7 @@ const defaultTools: EditorJsToolsConfig = {
   },
   TableConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       table: {
         inlineToolbar: true,
@@ -160,6 +170,7 @@ const defaultTools: EditorJsToolsConfig = {
   },
   AttachesConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       attaches: {
         config: {
@@ -170,10 +181,12 @@ const defaultTools: EditorJsToolsConfig = {
   },
   DelimiterConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {}
   },
   MarkerConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       Marker: {
         shortcut: 'CMD+SHIFT+M'
@@ -182,6 +195,7 @@ const defaultTools: EditorJsToolsConfig = {
   },
   ColorConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       Color: {
         config: {
@@ -207,6 +221,7 @@ const defaultTools: EditorJsToolsConfig = {
   },
   ChangeCaseConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       changeCase: {
         config: {
@@ -218,6 +233,7 @@ const defaultTools: EditorJsToolsConfig = {
   },
   HyperlinkConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       hyperlink: {
         config: {
@@ -233,14 +249,17 @@ const defaultTools: EditorJsToolsConfig = {
   },
   TextVariantConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: { }
   },
   CodeConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: { }
   },
   PersonalityConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       personality: {
         config: {
@@ -251,6 +270,7 @@ const defaultTools: EditorJsToolsConfig = {
   },
   WarningConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       warning: {
         inlineToolbar: true,
@@ -264,6 +284,7 @@ const defaultTools: EditorJsToolsConfig = {
   },
   InlineCodeConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       inlineCode: {
         shortcut: 'CMD+SHIFT+M'
@@ -272,10 +293,32 @@ const defaultTools: EditorJsToolsConfig = {
   },
   UndoConfig: {
     isEnabled: true,
+    supportInColumn: true,
     toolsConfig: {
       undo: 'CMD+X',
       redo: 'CMD+ALT+C'
     }
+  },
+  DragDropConfig: {
+    isEnabled: true,
+    supportInColumn: true
+  },
+  ColumnsConfig: {
+    isEnabled: true
+  },
+  AlignmentTuneToolConfig: {
+    isEnabled: true,
+    toolsConfig: {
+      alligment: {
+        config: {
+          default: 'left'
+        }
+      }
+    }
+  },
+  TextAlignConfig: {
+    isEnabled: true,
+    supportInColumn: true
   }
 } as const
 

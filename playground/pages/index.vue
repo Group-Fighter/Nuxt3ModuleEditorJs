@@ -1,14 +1,16 @@
 <template>
-  <ClientOnly>
-    <NuxtEditorJs
-      v-model:modelValue="dat"
-      :config="config"
-      :holder="holder"
-      :on-ready="onReady"
-      :on-change="onChange"
-      :initialized="onInitialized"
-    />
-  </ClientOnly>
+  <div class="editor-page">
+    <ClientOnly>
+      <NuxtEditorJs
+        v-model:modelValue="dat"
+        :config="config"
+        :holder="holder"
+        :on-ready="onReady"
+        :on-change="onChange"
+        :initialized="onInitialized"
+      />
+    </ClientOnly>
+  </div>
 </template>
 
 <script setup>
@@ -125,6 +127,7 @@ const onInitialized = (NuxtEditorJs) => {
 function customParser (block) {
   return `<custom-tag> ${block.data.text} </custom-tag>`
 }
+
 const configParseHtml = {
   custom: customParser
 }
@@ -138,6 +141,27 @@ watch(dat, (value) => {
 }, { deep: true, immediate: true })
 </script>
 
-<style scoped>
+<style css>
+.editor-page{
+  margin-left: 70px;
+}
+.editorjs-wrapper{
+  border: 1px solid #eee;
+  border-radius: 5px;
+  padding:0px;
+  margin-bottom: 10px;
+  box-shadow: 0 6px 18px #e8edfa80;
+}
+
+.ce-editorjsColumns_col{
+  border: 1px solid #eee;
+  border-radius: 5px;
+  gap: 10px;
+  padding-top:10px;
+}
+
+.ce-editorjsColumns_col:focus-within{
+  box-shadow: 0 6px 18px #e8edfa80;
+}
 
 </style>
