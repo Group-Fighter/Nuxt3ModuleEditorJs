@@ -10,13 +10,6 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 ## Installation
 - Run `npm i nuxt3-editorjs` to install from NPM.
 
-## Development
-
-- Run `npm install` to install required dependencies.
-- Run `npm run dev:prepare` to generate type stubs.
-- Use `npm run dev` to start [playground](./playground) in development mode.
-- Use `npm run prepack` to build the module. 
-
 ## Supported Plugins
 
 <table border="0" align="center" width="100%" >
@@ -553,3 +546,10 @@ export default defineNuxtConfig({
   },
 }
 ```
+
+## Development
+
+- Run `npm install` to install required dependencies.
+- Run `npm run dev:prepare` to generate type stubs.
+- Use `npm run dev` to start [playground](./playground) in development mode.
+- Use `npm run prepack` to build the module. 
