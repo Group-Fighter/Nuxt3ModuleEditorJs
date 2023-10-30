@@ -36,12 +36,12 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
       <li><a href="https://github.com/editor-js/delimiter">Delimiter</a></li>
       <li><a href="https://github.com/editor-js/raw">Raw</a></li>
       <li><a href="https://github.com/kommitters/editorjs-drag-drop">Drag Drop</a></li>
+      <li><a href="https://github.com/editor-js/table">Table</a></li>
     </ol>  
   </td>
 
   <td width="50%" align="left">
-    <ol start="14">
-      <li><a href="https://github.com/editor-js/table">Table</a></li>
+    <ol start="15">
       <li><a href="https://github.com/editor-js/warning">Warning</a></li>
       <li><a href="https://github.com/editor-js/paragraph">Paragraph</a></li>
       <li><a href="https://github.com/editor-js/checklist">Checklist</a></li>
