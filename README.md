@@ -64,7 +64,7 @@ Inspiration from `https://github.com/wantpinow/nuxt-editorjs` and `https://githu
 
 ## Usage
 - We expose an : 
-  - Single `<NuxtEditorJs />` component.
+  - One `<NuxtEditorJs />` component.
   - Three backend for upload file and one backend for scrape meta data (Link Tool)
   - One Composables `const { parse, parseBlock, parseStrict, validate } = useParseHtml(configParseHtml)` to parseHtml
 
